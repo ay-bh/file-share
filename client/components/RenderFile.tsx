@@ -2,7 +2,7 @@ import { FunctionComponent, useState } from 'react';
 import { IFile } from '../libs/types';
 import { IconFileCheck } from '@tabler/icons';
 
-import { Badge, Avatar, Center, Transition, ThemeIcon } from '@mantine/core';
+import { Badge, Avatar, Center, Transition, ThemeIcon, Paper } from '@mantine/core';
 
 const RenderFile: FunctionComponent<{ file: IFile }> = ({ file }) => {
     const [mounted, setMounted] = useState(false)
@@ -13,16 +13,18 @@ const RenderFile: FunctionComponent<{ file: IFile }> = ({ file }) => {
       {(styles) => 
 
     <div style={styles}>
+    
       <Center>
 
-          <IconFileCheck size={60} stroke={1.5} />
+          {/* <IconFileCheck size={60} stroke={1.5} /> */}
     
       </Center>
       <br />
-      <Badge variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }} size="lg" radius="xl">
+      <Badge variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }} size="xl" radius="lg">
         <span>{file.name} </span>
         <span> - {sizeMB} MB</span>
       </Badge>
+ 
     </div>}
     </Transition>
   );

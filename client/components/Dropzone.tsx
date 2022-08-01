@@ -1,7 +1,8 @@
-import { useRef, useCallback, FunctionComponent, Dispatch } from 'react';
+import { useRef, useCallback, FunctionComponent, Dispatch, useState } from 'react';
 import { Text, Group, Button, createStyles } from '@mantine/core';
 import { Dropzone, MIME_TYPES } from '@mantine/dropzone';
 import { IconCloudUpload, IconX, IconDownload } from '@tabler/icons';
+import axios from 'axios'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -27,12 +28,15 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+let file = false;
+
 export const DropzoneButton: FunctionComponent<{ setFile: Dispatch<any> }> = ({
   setFile,
 }) => {
   const onDrop = useCallback((acceptedFile) => {
     console.log(acceptedFile);
     setFile(acceptedFile[0]);
+    file=true;
   }, []);
 
   const { classes, theme } = useStyles();
@@ -76,10 +80,14 @@ export const DropzoneButton: FunctionComponent<{ setFile: Dispatch<any> }> = ({
           </Text>
         </div>
       </Dropzone>
-
+      {/* <Button className={classes.control} size="md" radius="xl" onClick={() => openRef.current?.()}>
+        Select file
+      </Button> */}
+{ (file===false)?
       <Button className={classes.control} size="md" radius="xl" onClick={() => openRef.current?.()}>
         Select files
-      </Button>
+      </Button>:  <></>
+      }
     </div>
   );
 }
